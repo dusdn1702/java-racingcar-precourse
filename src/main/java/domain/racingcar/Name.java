@@ -1,4 +1,4 @@
-package racingcar;
+package domain.racingcar;
 
 public class Name {
     private final String name;
@@ -7,7 +7,6 @@ public class Name {
         this.name = name;
     }
 
-    @Override
     public String toString() {
         return name;
     }

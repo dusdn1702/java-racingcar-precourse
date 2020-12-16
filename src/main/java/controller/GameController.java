@@ -1,9 +1,9 @@
 package controller;
 
-import domain.Cars;
-import domain.Count;
-import domain.NameValidator;
-import domain.Winners;
+import domain.*;
+import domain.racingcar.Cars;
+import domain.racingcar.NameValidator;
+import domain.racingcar.Winners;
 import view.InputView;
 import view.OutputView;
 
@@ -21,14 +21,18 @@ public class GameController {
         Cars cars = new Cars(names);
         Count count = new Count(generateCount());
 
-        OutputView.printResultNotice();
-        do {
-            OutputView.printResult(cars.playOneCount());
-            OutputView.printOneLine();
-        } while (count.isGreaterThanOneWithDecreasing());
+        playGame(cars, count);
 
-        Winners winners = new Winners(cars);
-        OutputView.printWinners(winners.toString());
+        makeWinners(cars);
+    }
+
+    private List<String> generateNames() {
+        try {
+            return NameValidator.makeNames(this.inputView.receiveNames());
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return generateNames();
+        }
     }
 
     private Integer generateCount() {
@@ -40,12 +44,16 @@ public class GameController {
         }
     }
 
-    private List<String> generateNames() {
-        try {
-            return NameValidator.makeNames(this.inputView.receiveNames());
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return generateNames();
-        }
+    private void playGame(Cars cars, Count count) {
+        OutputView.printResultNotice();
+        do {
+            OutputView.printResult(cars.playOneCount());
+            OutputView.printOneLine();
+        } while (count.isGreaterThanOneWithDecreasing());
+    }
+
+    private void makeWinners(Cars cars) {
+        Winners winners = new Winners(cars);
+        OutputView.printWinners(winners.toString());
     }
 }

@@ -1,8 +1,8 @@
-package racingcar;
+package domain.racingcar;
 
 public class Position {
     public static final int INIT_POSITION = 0;
-    public static final String UNIT_EXPRESSION_OF_POSITION = "-";
+    private static final String UNIT_EXPRESSION_OF_POSITION = "-";
 
     private int position;
 
@@ -17,7 +17,7 @@ public class Position {
     @Override
     public String toString() {
         StringBuilder printPosition = new StringBuilder();
-        for (int i = 0; i < this.position; i++) {
+        while (this.position-- > 0) {
             printPosition.append(UNIT_EXPRESSION_OF_POSITION);
         }
         return printPosition.toString();

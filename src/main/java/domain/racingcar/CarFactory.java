@@ -1,6 +1,4 @@
-package domain;
-
-import racingcar.Car;
+package domain.racingcar;
 
 public class CarFactory {
     public static Car createCar(String name) {

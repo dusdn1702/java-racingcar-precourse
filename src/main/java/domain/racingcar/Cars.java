@@ -1,17 +1,13 @@
-package domain;
-
-import racingcar.Car;
-import racingcar.Position;
+package domain.racingcar;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static racingcar.Position.INIT_POSITION;
+import static domain.racingcar.Position.INIT_POSITION;
 
 public class Cars {
-    List<Car> cars;
+    private final List<Car> cars;
 
     public Cars(List<String> names) {
         cars = new ArrayList<>();

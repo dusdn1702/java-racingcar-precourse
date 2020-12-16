@@ -1,7 +1,6 @@
-package controller;
+package domain;
 
 public class CountValidator {
-
     public static final int MINIMUM_TO_COUNT = 0;
 
     public static Integer makeCount(String receiveCount) {

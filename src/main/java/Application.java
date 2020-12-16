@@ -1,5 +1,3 @@
-package racingcar;
-
 import controller.GameController;
 import view.InputView;
 

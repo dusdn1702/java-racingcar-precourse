@@ -1,5 +1,7 @@
 package domain;
 
+import static domain.CountValidator.MINIMUM_TO_COUNT;
+
 public class Count {
     private Integer count;
 
@@ -8,6 +10,6 @@ public class Count {
     }
 
     public boolean isGreaterThanOneWithDecreasing() {
-        return this.count-->0;
+        return this.count-- > MINIMUM_TO_COUNT;
     }
 }

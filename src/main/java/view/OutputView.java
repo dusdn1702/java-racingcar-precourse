@@ -1,7 +1,5 @@
 package view;
 
-import domain.Winners;
-
 import java.util.List;
 
 public class OutputView {
