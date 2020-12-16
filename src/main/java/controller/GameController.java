@@ -1,6 +1,7 @@
 package controller;
 
 import domain.Cars;
+import domain.Count;
 import domain.NameValidator;
 import view.InputView;
 
@@ -16,6 +17,6 @@ public class GameController {
     public void run() {
         List<String> names = NameValidator.makeNames(this.inputView.receiveNames());
         Cars cars = new Cars(names);
-        System.out.println(CountValidator.makeCount(this.inputView.receiveCount()));
+        Count count = new Count(CountValidator.makeCount(this.inputView.receiveCount()));
     }
 }
