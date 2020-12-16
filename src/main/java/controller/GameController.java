@@ -16,5 +16,6 @@ public class GameController {
     public void run() {
         List<String> names = NameValidator.makeNames(this.inputView.receiveNames());
         Cars cars = new Cars(names);
+        System.out.println(CountValidator.makeCount(this.inputView.receiveCount()));
     }
 }
