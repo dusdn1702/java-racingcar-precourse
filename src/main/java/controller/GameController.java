@@ -1,5 +1,6 @@
 package controller;
 
+import domain.Cars;
 import domain.NameValidator;
 import view.InputView;
 
@@ -14,6 +15,6 @@ public class GameController {
 
     public void run() {
         List<String> names = NameValidator.makeNames(this.inputView.receiveNames());
-        System.out.println(names);
+        Cars cars = new Cars(names);
     }
 }
