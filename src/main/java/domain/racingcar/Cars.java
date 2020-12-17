@@ -9,33 +9,35 @@ import static domain.racingcar.Position.INIT_POSITION;
 public class Cars {
     private final List<Car> cars;
 
-    public Cars(List<String> names) {
-        cars = new ArrayList<>();
-        for (String name : names) {
-            cars.add(CarFactory.createCar(name));
-        }
+    public Cars(List<Car> cars) {
+        this.cars = cars;
     }
 
     public List<String> playOneCount() {
         for (Car car : cars) {
-            car.giveRandomNumber(new RandomNumber());
+            car.moveByRandomNumber(new RandomNumber());
         }
-        return getResult();
+        return report();
     }
 
-    private List<String> getResult() {
-        return cars.stream().map(Car::toString).collect(Collectors.toList());
+    private List<String> report() {
+        return cars.stream()
+                .map(Car::toString)
+                .collect(Collectors.toList());
     }
 
-    public Integer getWinnerPosition() {
+    public int getWinnerPosition() {
         int nowPosition = INIT_POSITION;
         for (Car car : cars) {
             nowPosition = car.comparePosition(nowPosition);
         }
+
         return nowPosition;
     }
 
     public List<Car> getWinners(Integer position) {
-        return cars.stream().filter(car -> car.isSamePosition(position)).collect(Collectors.toList());
+        return cars.stream()
+                .filter(car -> car.isSamePosition(position))
+                .collect(Collectors.toList());
     }
 }

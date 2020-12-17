@@ -1,46 +1,39 @@
 package controller;
 
 import domain.*;
+import domain.racingcar.CarFactory;
 import domain.racingcar.Cars;
 import domain.racingcar.NameValidator;
 import domain.racingcar.Winners;
 import view.InputView;
 import view.OutputView;
 
-import java.util.List;
-
 public class GameController {
-    private final InputView inputView;
-
-    public GameController(InputView inputView) {
-        this.inputView = inputView;
-    }
-
-    public void run() {
-        List<String> names = generateNames();
-        Cars cars = new Cars(names);
-        Count count = new Count(generateCount());
+    public void run(final InputView inputView) {
+        Cars cars = generateCars(inputView);
+        Count count = generateCount(inputView);
 
         playGame(cars, count);
-
         makeWinners(cars);
     }
 
-    private List<String> generateNames() {
-        try {
-            return NameValidator.makeNames(this.inputView.receiveNames());
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return generateNames();
+    private Cars generateCars(final InputView inputView) {
+        while (true) {
+            try {
+                return CarFactory.generateCars(inputView.receiveNames());
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
 
-    private Integer generateCount() {
+    private Count generateCount(final InputView inputView) {
         try {
-            return CountValidator.makeCount(this.inputView.receiveCount());
+            int count = CountValidator.makeCount(inputView.receiveCount());
+            return new Count(count);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return generateCount();
+            return generateCount(inputView);
         }
     }
 
@@ -48,8 +41,9 @@ public class GameController {
         OutputView.printResultNotice();
         do {
             OutputView.printResult(cars.playOneCount());
+            count.playOnce();
             OutputView.printOneLine();
-        } while (count.isGreaterThanOneWithDecreasing());
+        } while (count.isGreaterThanOne());
     }
 
     private void makeWinners(Cars cars) {

@@ -15,7 +15,7 @@ public class CountValidator {
         }catch (NumberFormatException e){
             throw new IllegalArgumentException("시도 횟수는 숫자여야 한다.");
         }
-    }
+   }
 
     private static void checkPositiveNumber(Integer makeNumber) {
         if(makeNumber< MINIMUM_TO_COUNT){

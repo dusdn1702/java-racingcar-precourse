@@ -12,7 +12,7 @@ public class Winners {
     }
 
     private List<Car> makeWinners(Cars cars) {
-        Integer winnerPosition = cars.getWinnerPosition();
+        int winnerPosition = cars.getWinnerPosition();
         return cars.getWinners(winnerPosition);
     }
 

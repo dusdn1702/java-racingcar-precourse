@@ -9,7 +9,11 @@ public class Count {
         this.count = count;
     }
 
-    public boolean isGreaterThanOneWithDecreasing() {
-        return this.count-- > MINIMUM_TO_COUNT;
+    public boolean isGreaterThanOne() {
+        return count > MINIMUM_TO_COUNT;
+    }
+
+    public void playOnce() {
+        count--;
     }
 }

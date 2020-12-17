@@ -12,7 +12,7 @@ public class Car {
     }
 
     // 추가 기능 구현
-    public void giveRandomNumber(RandomNumber randomNumber) {
+    public void moveByRandomNumber(RandomNumber randomNumber) {
         if (randomNumber.isGreaterThan(MINIMUM_TO_MOVE)) {
             this.position.move();
         }
